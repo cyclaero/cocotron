@@ -1571,16 +1571,16 @@ NSString * const NSWindowDidAnimateNotification=@"NSWindowDidAnimateNotification
 
 -(BOOL)makeFirstResponder:(NSResponder *)responder {
 
-   if(_firstResponder==responder || 
-      ([responder isKindOfClass:[NSControl class]] && _firstResponder==[(NSControl *)responder currentEditor]))
+   if([self firstResponder]==responder ||
+      ([responder isKindOfClass:[NSControl class]] && [self firstResponder]==[(NSControl *)responder currentEditor]))
     return YES;
 
-   if(![_firstResponder resignFirstResponder])
+   if(![[self firstResponder] resignFirstResponder])
     return NO;
 
    _firstResponder=responder;
 
-   if([_firstResponder becomeFirstResponder])
+   if([[self firstResponder] becomeFirstResponder])
     return YES;
 
    _firstResponder=self;
@@ -1631,15 +1631,15 @@ NSString * const NSWindowDidAnimateNotification=@"NSWindowDidAnimateNotification
       
    [keyWindow resignKeyWindow];
 
-   if(_firstResponder!=self && [_firstResponder respondsToSelector:_cmd])
-    [_firstResponder performSelector:_cmd];
+   if([self firstResponder]!=self && [[self firstResponder] respondsToSelector:_cmd])
+    [[self firstResponder] performSelector:_cmd];
  
    [self postNotificationName:NSWindowDidBecomeKeyNotification];
 }
 
 -(void)resignKeyWindow {
-   if(_firstResponder!=self && [_firstResponder respondsToSelector:_cmd])
-    [_firstResponder performSelector:_cmd];
+   if([self firstResponder]!=self && [[self firstResponder] respondsToSelector:_cmd])
+    [[self firstResponder] performSelector:_cmd];
 
    [self postNotificationName:NSWindowDidResignKeyNotification];
 }
@@ -1667,16 +1667,16 @@ NSString * const NSWindowDidAnimateNotification=@"NSWindowDidAnimateNotification
 }
 
 -(void)selectNextKeyView:sender {
-   if([_firstResponder isKindOfClass:[NSView class]]){
-    NSView *view=(NSView *)_firstResponder;
+   if([[self firstResponder] isKindOfClass:[NSView class]]){
+    NSView *view=(NSView *)[self firstResponder];
 
     [self selectKeyViewFollowingView:view];
    }
 }
 
 -(void)selectPreviousKeyView:sender {
-   if([_firstResponder isKindOfClass:[NSView class]]){
-    NSView *view=(NSView *)_firstResponder;
+   if([[self firstResponder] isKindOfClass:[NSView class]]){
+    NSView *view=(NSView *)[self firstResponder];
 
     [self selectKeyViewPrecedingView:view];
    }
@@ -1758,7 +1758,7 @@ NSString * const NSWindowDidAnimateNotification=@"NSWindowDidAnimateNotification
 
 -(void)endEditingFor:object {
    if (_currentFieldEditor) {
-      if ((NSResponder *)_currentFieldEditor == _firstResponder) {
+      if ((NSResponder *)_currentFieldEditor == [self firstResponder]) {
          _firstResponder = object;
          [_currentFieldEditor resignFirstResponder];
       }
@@ -2211,15 +2211,15 @@ NSString * const NSWindowDidAnimateNotification=@"NSWindowDidAnimateNotification
      break;
 
     case NSKeyDown:
-     [_firstResponder keyDown:event];
+     [[self firstResponder] keyDown:event];
      break;
 
     case NSKeyUp:
-     [_firstResponder keyUp:event];
+     [[self firstResponder] keyUp:event];
      break;
 
     case NSFlagsChanged:
-     [_firstResponder flagsChanged:event];
+     [[self firstResponder] flagsChanged:event];
      break;
 
     case NSPlatformSpecific:
@@ -2536,7 +2536,7 @@ NSString * const NSWindowDidAnimateNotification=@"NSWindowDidAnimateNotification
     NSString *characters=[event charactersIgnoringModifiers];
 
     if([characters isEqualToString:@" "])
-     [_firstResponder tryToPerform:@selector(performClick:) with:nil];
+     [[self firstResponder] tryToPerform:@selector(performClick:) with:nil];
     else if([characters isEqualToString:@"\t"]){
      if([event modifierFlags]&NSShiftKeyMask)
       [self selectPreviousKeyView:nil];

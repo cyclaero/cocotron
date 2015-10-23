@@ -330,7 +330,6 @@ NSString * const NSDrawerDidCloseNotification = @"NSDrawerDidCloseNotification";
 }
 
 - (void)_resetWindowOrdering:sender {
-    [_drawerWindow orderWindow:NSWindowAbove relativeTo:[_parentWindow windowNumber]];
     [_drawerWindow orderWindow:NSWindowBelow relativeTo:[_parentWindow windowNumber]];
 }
 
@@ -357,8 +356,6 @@ NSString * const NSDrawerDidCloseNotification = @"NSDrawerDidCloseNotification";
     start = [[self class] drawerFrameWithContentSize:[self contentSize] parentWindow:[self parentWindow] leadingOffset:_leadingOffset trailingOffset:_trailingOffset edge:_edge state:NSDrawerClosedState];
     
     frame.size = start.size = [self drawerWindow:_drawerWindow constrainSize:frame.size edge:_edge];
-//    frame.size = [self drawerWindow:_drawerWindow constrainSize:frame.size];
-//    start.size = [self drawerWindow:_drawerWindow constrainSize:start.size];
     [_drawerWindow setFrame:start display:YES animate:NO];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(drawerDidOpen:) name:NSWindowDidAnimateNotification object:_drawerWindow];
@@ -379,7 +376,7 @@ NSString * const NSDrawerDidCloseNotification = @"NSDrawerDidCloseNotification";
     [_parentWindow makeFirstResponder:_parentWindow];
 
     frame = [[self class] drawerFrameWithContentSize:[self contentSize] parentWindow:[self parentWindow] leadingOffset:_leadingOffset trailingOffset:_trailingOffset edge:_edge state:NSDrawerClosedState];
-    frame.size   = [self drawerWindow:_drawerWindow constrainSize:frame.size edge:_edge];
+    frame.size = [self drawerWindow:_drawerWindow constrainSize:frame.size edge:_edge];
 
 	[[NSNotificationCenter defaultCenter] postNotificationName:NSDrawerWillCloseNotification object:self];
 
