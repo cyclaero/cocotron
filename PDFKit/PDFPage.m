@@ -1,6 +1,7 @@
 #import <PDFKit/PDFPage.h>
 #import <AppKit/NSRaise.h>
 #import <AppKit/NSGraphicsContext.h>
+#import <Onyx2D/O2Geometry.h>
 #import <Onyx2D/O2Context_distill.h>
 
 @implementation PDFPage

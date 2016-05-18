@@ -9,7 +9,7 @@
 
 // Define that if we want to preserve the system pref for font sizes
 // That's usually a bad idea if the UI can't automatically adapt to a random control sizes
-//#define USE_WIN_PREFS_FONTSIZE
+// #define USE_WIN_PREFS_FONTSIZE
 
 #define MAXUNICHAR 0xFFFF
 
@@ -433,7 +433,7 @@ static inline CGGlyphMetrics *fetchGlyphAdvancementIfNeeded(KTFont_gdi *self,CGG
         case kCTFontMenuItemCmdKeyFontType:
         case kCTFontMenuTitleFontType:
         case kCTFontMenuItemFontType: {
-            name = @"Tahoma";
+            name = @"Segoe UI";
             if (systemInfoIsValid) {
                 // Try to ask the system which font we should use for menus
                 LOGFONTW fl = nm.lfMenuFont;
@@ -451,54 +451,51 @@ static inline CGGlyphMetrics *fetchGlyphAdvancementIfNeeded(KTFont_gdi *self,CGG
         case kCTFontControlContentFontType:
         case kCTFontToolbarFontType:
         case kCTFontLabelFontType: {
-            name = @"Tahoma";
+            name = @"Segoe UI";
             if (systemInfoIsValid) {
                 // Try to ask the system which font we should use for menus
                 LOGFONTW fl = nm.lfCaptionFont;
                 name = [NSString stringWithFormat:@"%S", fl.lfFaceName];
-#if USE_WIN_PREFS_FONTSIZE
                 if (size == 0) {
+#ifdef USE_WIN_PREFS_FONTSIZE
                     size = ABS(fl.lfHeight);
-                }
+#else
+                    size = 10.0;
 #endif
-                if (size == 0) {
-                    size = 10.;
                 }
             }
         }
             break;
             
         case kCTFontSystemFontType: {
-            name = @"Tahoma";
+            name = @"Segoe UI";
             if (systemInfoIsValid) {
                 // Try to ask the system which font we should use for menus
                 LOGFONTW fl = nm.lfMessageFont;
                 name = [NSString stringWithFormat:@"%S", fl.lfFaceName];
-#if USE_WIN_PREFS_FONTSIZE
                 if (size == 0) {
+#ifdef USE_WIN_PREFS_FONTSIZE
                     size = ABS(fl.lfHeight);
-                }
+#else
+                    size = 13.0;
 #endif
-                if (size == 0) {
-                    size = 12.;
                 }
            }
         }
             break;
 
         case kCTFontToolTipFontType: {
-            name = @"Tahoma";
+            name = @"Segoe UI";
             if (systemInfoIsValid) {
                 // Try to ask the system which font we should use for menus
                 LOGFONTW fl = nm.lfStatusFont;
                 name = [NSString stringWithFormat:@"%S", fl.lfFaceName];
-#if USE_WIN_PREFS_FONTSIZE
                 if (size == 0) {
+#ifdef USE_WIN_PREFS_FONTSIZE
                     size = ABS(fl.lfHeight);
-                }
+#else
+                    size = 10.0;
 #endif
-                if (size == 0) {
-                    size = 10.;
                 }
             }
         }
@@ -513,7 +510,7 @@ static inline CGGlyphMetrics *fetchGlyphAdvancementIfNeeded(KTFont_gdi *self,CGG
     if (name && size > 0.) {
         font=O2FontCreateWithFontName(name);
         if (font == nil) {
-            font=O2FontCreateWithFontName(@"Tahoma");
+            font=O2FontCreateWithFontName(@"Segoe UI");
         }
         
         result=[self initWithFont:font size:size];

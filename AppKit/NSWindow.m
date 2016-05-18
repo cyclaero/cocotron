@@ -936,7 +936,6 @@ NSString * const NSWindowDidAnimateNotification=@"NSWindowDidAnimateNotification
 
 -(void)setContentMinSize:(NSSize)value {
    _contentMinSize=value;
-   NSUnimplementedMethod();
 }
 
 -(void)setContentMaxSize:(NSSize)value {

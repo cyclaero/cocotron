@@ -103,13 +103,13 @@ static void loadGlyphAndCharacterCacheForLocation(NSTypesetter_concrete *self,un
 		// We could use NSLineNoMove with lineFragmentRectForProposedRect but Cocoa doesn't do that
 		_scanRect = NSZeroRect;
 	}
-	if (_scanRect.size.height < wantedHeight) {
 #if DEBUG_GETLINEFRAGMENTRECT
+	if (_scanRect.size.height < wantedHeight) {
         NSLog(@"height: %f is too small", _scanRect.size.height);
-#endif
 		// Too small for our text
 		_scanRect = NSZeroRect;
 	}
+#endif
 	if (NSEqualRects(_scanRect, NSZeroRect) == NO) {
 #if DEBUG_GETLINEFRAGMENTRECT
         NSLog(@"applying padding: %f", _container.lineFragmentPadding);

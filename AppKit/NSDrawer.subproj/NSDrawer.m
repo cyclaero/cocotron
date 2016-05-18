@@ -330,6 +330,7 @@ NSString * const NSDrawerDidCloseNotification = @"NSDrawerDidCloseNotification";
 }
 
 - (void)_resetWindowOrdering:sender {
+    [_drawerWindow orderWindow:NSWindowAbove relativeTo:[_parentWindow windowNumber]];
     [_drawerWindow orderWindow:NSWindowBelow relativeTo:[_parentWindow windowNumber]];
 }
 

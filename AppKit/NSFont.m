@@ -62,15 +62,15 @@ FOUNDATION_EXPORT char *NSUnicodeToSymbol(const unichar *characters,unsigned len
 		return [O2Font postscriptNameForDisplayName:@"Courier New"];
 	
 	if([name isEqual:@"LucidaGrande"])
-		return [O2Font postscriptNameForDisplayName:@"Arial"];
+		return [O2Font postscriptNameForDisplayName:@"Segoe UI"];
 	if([name isEqual:@"LucidaGrande-Bold"])
-		return [O2Font postscriptNameForDisplayName:@"Arial Bold"];
+		return [O2Font postscriptNameForDisplayName:@"Segoe UI Bold"];
     
     // Special fonts used by Xcode 5 when compiling some xibs
 	if([name isEqual:@".LucidaGrandeUI"])
-		return [O2Font postscriptNameForDisplayName:@"Arial"];
+		return [O2Font postscriptNameForDisplayName:@"Segoe UI"];
 	if([name isEqual:@".LucidaGrandeUI-Bold"])
-		return [O2Font postscriptNameForDisplayName:@"Arial Bold"];
+		return [O2Font postscriptNameForDisplayName:@"Segoe UI Bold"];
     
 	if([name isEqual:@"HelveticaNeue-CondensedBold"])
 		return [O2Font postscriptNameForDisplayName:@"Arial"];    
@@ -213,27 +213,27 @@ static NSLock *_cacheLock=nil;
 }
 
 +(NSFont *)controlContentFontOfSize:(float)size {
-    return [self _uiFontOfType:kCTFontControlContentFontType size:(size==0)?12.0:size fallbackName:@"Arial"];
+    return [self _uiFontOfType:kCTFontControlContentFontType size:(size==0)?12.0:size fallbackName:@"Segoe UI"];
 }
 
 +(NSFont *)labelFontOfSize:(float)size {
-    return [self _uiFontOfType:kCTFontLabelFontType size:(size==0)?12.0:size fallbackName:@"Arial"];
+    return [self _uiFontOfType:kCTFontLabelFontType size:(size==0)?12.0:size fallbackName:@"Segoe UI"];
 }
 
 +(NSFont *)menuFontOfSize:(float)size {
-    return [self _uiFontOfType:kCTFontMenuItemFontType size:size fallbackName:@"Arial"];
+    return [self _uiFontOfType:kCTFontMenuItemFontType size:size fallbackName:@"Segoe UI"];
 }
 
 +(NSFont *)menuBarFontOfSize:(float)size {
-    return [self _uiFontOfType:kCTFontMenuTitleFontType size:size fallbackName:@"Arial"];
+    return [self _uiFontOfType:kCTFontMenuTitleFontType size:size fallbackName:@"Segoe UI"];
 }
 
 +(NSFont *)messageFontOfSize:(float)size {
-    return [self _uiFontOfType:kCTFontSystemFontType size:(size==0)?12.0:size fallbackName:@"Arial"];
+    return [self _uiFontOfType:kCTFontSystemFontType size:(size==0)?12.0:size fallbackName:@"Segoe UI"];
 }
 
 +(NSFont *)paletteFontOfSize:(float)size {
-    return [self _uiFontOfType:kCTFontPaletteFontType size:(size==0)?12.0:size fallbackName:@"Arial"];
+    return [self _uiFontOfType:kCTFontPaletteFontType size:(size==0)?12.0:size fallbackName:@"Segoe UI"];
 }
 
 +(NSFont *)systemFontOfSize:(float)size {
@@ -245,7 +245,7 @@ static NSLock *_cacheLock=nil;
 }
 
 +(NSFont *)toolTipsFontOfSize:(float)size {
-    return [self _uiFontOfType:kCTFontToolTipFontType size:(size==0)?10.:size fallbackName:@"Arial"];
+    return [self _uiFontOfType:kCTFontToolTipFontType size:(size==0)?10.:size fallbackName:@"Segoe UI"];
 }
 
 +(NSFont *)userFontOfSize:(float)size {
